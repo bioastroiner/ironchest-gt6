@@ -7,11 +7,11 @@
  ******************************************************************************/
 package cpw.mods.ironchest;
 
-import static cpw.mods.ironchest.IronChestType.COPPER;
+import static cpw.mods.ironchest.IronChestType.LEAD;
 import static cpw.mods.ironchest.IronChestType.CRYSTAL;
-import static cpw.mods.ironchest.IronChestType.DIAMOND;
-import static cpw.mods.ironchest.IronChestType.GOLD;
-import static cpw.mods.ironchest.IronChestType.IRON;
+import static cpw.mods.ironchest.IronChestType.TUNGSTEN;
+import static cpw.mods.ironchest.IronChestType.STAINLESS;
+import static cpw.mods.ironchest.IronChestType.BRONZE;
 import static cpw.mods.ironchest.IronChestType.OBSIDIAN;
 import static cpw.mods.ironchest.IronChestType.STEEL;
 import static cpw.mods.ironchest.IronChestType.WOOD;
@@ -22,21 +22,26 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public enum ChestChangerType {
 
-    IRONGOLD(IRON, GOLD, "ironGoldUpgrade", "Iron to Gold Chest Upgrade", "mmm", "msm", "mmm"),
-    GOLDDIAMOND(GOLD, DIAMOND, "goldDiamondUpgrade", "Gold to Diamond Chest Upgrade", "GGG", "msm", "GGG"),
-    COPPERSTEEL(COPPER, STEEL, "copperSteelUpgrade", "Copper to Steel Chest Upgrade", "mmm", "msm", "mmm"),
-    STEELGOLD(STEEL, GOLD, "steelGoldUpgrade", "Steel to Gold Chest Upgrade", "mGm", "GsG", "mGm"),
-    COPPERIRON(COPPER, IRON, "copperIronUpgrade", "Copper to Iron Chest Upgrade", "mGm", "GsG", "mGm"),
-    DIAMONDCRYSTAL(DIAMOND, CRYSTAL, "diamondCrystalUpgrade", "Diamond to Crystal Chest Upgrade", "GGG", "GOG", "GGG"),
-    WOODIRON(WOOD, IRON, "woodIronUpgrade", "Normal chest to Iron Chest Upgrade", "mmm", "msm", "mmm"),
-    WOODCOPPER(WOOD, COPPER, "woodCopperUpgrade", "Normal chest to Copper Chest Upgrade", "mmm", "msm", "mmm"),
-    DIAMONDOBSIDIAN(DIAMOND, OBSIDIAN, "diamondObsidianUpgrade", "Diamond to Obsidian Chest Upgrade", "mmm", "mGm",
+    BRONZESTAINLESS(BRONZE, STAINLESS, "bronzeStainlessUpgrade", "Iron to Stainless Chest Upgrade", "mmm", "msm", "mmm"),
+    STAINLESSTUNGSTEN(STAINLESS, TUNGSTEN, "stainlessTungstenUpgrade", "Tungsten Steel to Diamond Chest Upgrade", "GGG", "msm", "GGG"),
+    LEADSTEEL(LEAD, STEEL, "leadSteelUpgrade", "Lead to Steel Chest Upgrade", "mmm", "msm", "mmm"),
+    STEELSTAINLESS(STEEL, STAINLESS, "steelStainlessUpgrade", "Steel to Stainless Chest Upgrade", "mGm", "GsG", "mGm"),
+    LEADBRONZE(LEAD, BRONZE, "leadBronzeUpgrade", "Lead to Bronze Chest Upgrade", "mGm", "GsG", "mGm"),
+    TUNGSTENCRYSTAL(TUNGSTEN, CRYSTAL, "tungstenCrystalUpgrade", "Tungsten Steel to Crystal Chest Upgrade", "GGG", "GOG", "GGG"),
+    WOODBRONZE(WOOD, BRONZE, "woodBronzeUpgrade", "Normal chest to Bronze Chest Upgrade", "mmm", "msm", "mmm"),
+    WOODLEAD(WOOD, LEAD, "woodLeadUpgrade", "Normal chest to Lead Chest Upgrade", "mmm", "msm", "mmm"),
+    TUNGSTENOBSIDIAN(TUNGSTEN, OBSIDIAN, "tungstenObsidianUpgrade", "Tungsten Steel to Obsidian Chest Upgrade", "mmm", "mGm",
             "mmm");
 
-    private final IronChestType source;
-    private final IronChestType target;
+    public final IronChestType source;
+    public final IronChestType target;
     public final String itemName;
     public final String descriptiveName;
+
+    public ItemChestChanger getItem() {
+        return item;
+    }
+
     private ItemChestChanger item;
     private final String[] recipe;
 

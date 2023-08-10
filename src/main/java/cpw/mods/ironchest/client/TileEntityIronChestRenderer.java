@@ -37,7 +37,7 @@ import com.google.common.primitives.SignedBytes;
 import cpw.mods.ironchest.IronChest;
 import cpw.mods.ironchest.IronChestType;
 import cpw.mods.ironchest.MappableItemStackWrapper;
-import cpw.mods.ironchest.TileEntityIronChest;
+import cpw.mods.ironchest.TileEntityBronzeChest;
 
 public class TileEntityIronChestRenderer extends TileEntitySpecialRenderer {
 
@@ -89,7 +89,7 @@ public class TileEntityIronChestRenderer extends TileEntitySpecialRenderer {
         itemRenderer.setRenderManager(RenderManager.instance);
     }
 
-    public void render(TileEntityIronChest tile, double x, double y, double z, float partialTick) {
+    public void render(TileEntityBronzeChest tile, double x, double y, double z, float partialTick) {
         if (tile == null) {
             return;
         }
@@ -181,7 +181,7 @@ public class TileEntityIronChestRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTick) {
-        render((TileEntityIronChest) tileentity, x, y, z, partialTick);
+        render((TileEntityBronzeChest) tileentity, x, y, z, partialTick);
     }
 
     private final ModelChest model;

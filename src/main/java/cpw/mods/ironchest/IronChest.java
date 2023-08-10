@@ -7,7 +7,17 @@
  ******************************************************************************/
 package cpw.mods.ironchest;
 
+import cpw.mods.fml.common.Loader;
+import gregapi.code.ModData;
+import gregapi.data.CS;
+import gregapi.data.MT;
+import gregapi.data.OD;
+import gregapi.data.OP;
+import gregapi.oredict.OreDictMaterial;
+import gregapi.util.CR;
+import gregapi.util.ST;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
@@ -74,14 +84,47 @@ public class IronChest {
                         typ.name(),
                         "SILVER",
                         "IronChest.SILVER");
-            } else {
+            }
+            else if (typ.name().equals("BRONZE")) {
+                GameRegistry.registerTileEntityWithAlternatives(
+                        typ.clazz,
+                        "IronChest." + typ.name(),
+                        typ.name(),
+                        "IRON",
+                        "IronChest.IRON");
+            }
+            else if (typ.name().equals("TUNGSTEN")) {
+                GameRegistry.registerTileEntityWithAlternatives(
+                        typ.clazz,
+                        "IronChest." + typ.name(),
+                        typ.name(),
+                        "DIAMOND",
+                        "IronChest.DIAMOND");
+            }
+            else if (typ.name().equals("STAINLESS")) {
+                GameRegistry.registerTileEntityWithAlternatives(
+                        typ.clazz,
+                        "IronChest." + typ.name(),
+                        typ.name(),
+                        "GOLD",
+                        "IronChest.GOLD");
+            }
+            else if (typ.name().equals("LEAD")) {
+                GameRegistry.registerTileEntityWithAlternatives(
+                        typ.clazz,
+                        "IronChest." + typ.name(),
+                        typ.name(),
+                        "COPPER",
+                        "IronChest.COPPER");
+            }
+            else {
                 GameRegistry.registerTileEntityWithAlternatives(typ.clazz, "IronChest." + typ.name(), typ.name());
             }
             proxy.registerTileEntitySpecialRenderer(typ);
         }
         OreDictionary.registerOre("chestWood", Blocks.chest);
         IronChestType.registerBlocksAndRecipes(ironChestBlock);
-        ChestChangerType.generateRecipes();
+        //ChestChangerType.generateRecipes();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
         proxy.registerRenderInformation();
         // if (OCELOTS_SITONCHESTS)
@@ -89,36 +132,119 @@ public class IronChest {
         // MinecraftForge.EVENT_BUS.register(new OcelotsSitOnChestsHandler());
         // }
         MinecraftForge.EVENT_BUS.register(this);
+
+        if(Loader.isModLoaded("gregtech")){
+            OreDictMaterial[] mats = new OreDictMaterial[]{MT.Bronze,MT.StainlessSteel,MT.TungstenSteel,MT.Pb,MT.Steel};
+            for (int i = 0; i < mats.length; i++) {
+                ItemStack res = ST.make(new ModData("IronChest","Iron Chest"),"BlockIronChest",1,i);
+                CR.shaped(res,CR.DEF,"PhP","RSR","PPP",'P', OP.plateDouble.mat(mats[i],1),'S', OP.stickLong.mat(mats[i],1),'R', OP.ring.mat(mats[i],1));
+            }
+            for (int i = 0; i < ChestChangerType.values().length; i++) {
+                ChestChangerType t = ChestChangerType.values()[i];
+                switch(t){
+                    case BRONZESTAINLESS:
+                        CR.shapeless(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),new Object[]{ST.make(
+                                new ModData("IronChest", "Iron Chest"),
+                                "BlockIronChest", 1, 1)
+                        ,OP.plate.mat(MT.Bronze,1)});
+                        break;
+                    case STAINLESSTUNGSTEN:
+                        CR.shapeless(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),new Object[]{ST.make(
+                                new ModData("IronChest", "Iron Chest"),
+                                "BlockIronChest", 1, 2)
+                                ,OP.plate.mat(MT.StainlessSteel,1)});
+                        break;
+                    case LEADSTEEL:
+                        CR.shapeless(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),new Object[]{ST.make(
+                                new ModData("IronChest", "Iron Chest"),
+                                "BlockIronChest", 1, 4)
+                                ,OP.plate.mat(MT.Pb,1)});
+                        break;
+                    case STEELSTAINLESS:
+                        CR.shapeless(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),new Object[]{ST.make(
+                                new ModData("IronChest", "Iron Chest"),
+                                "BlockIronChest", 1, 1)
+                                ,OP.plate.mat(MT.Steel,1)});
+                        break;
+                    case LEADBRONZE:
+                        CR.shapeless(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),new Object[]{ST.make(
+                                new ModData("IronChest", "Iron Chest"),
+                                "BlockIronChest", 1, 0)
+                                ,OP.plate.mat(MT.Pb,1)});
+                        break;
+                    case TUNGSTENCRYSTAL:
+                        CR.shaped(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),CR.DEF,"PhP","RSR","PPP",'P', OP.plate.mat(MT.Glass,1),'S', OP.stick.mat(MT.Steel,1),'R', OP.ring.mat(MT.Steel,1));
+
+//                        CR.shapeless(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),new Object[]{ST.make(
+//
+//                                ,OP.plate.mat(MT.Glass,1)});
+                        break;
+                    case WOODBRONZE:
+                        CR.shapeless(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),new Object[]{ST.make(
+                                new ModData("IronChest", "Iron Chest"),
+                                "BlockIronChest", 1, 0)
+                                ,OP.plate.mat(MT.Wood,1)});
+                        break;
+                    case WOODLEAD:
+                        CR.shapeless(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),new Object[]{ST.make(
+                                new ModData("IronChest", "Iron Chest"),
+                                "BlockIronChest", 1, 3)
+                                ,OP.plate.mat(MT.Wood,1)});
+                        break;
+                    case TUNGSTENOBSIDIAN:
+//                        CR.shapeless(ST.make(new ModData("IronChest","Iron Chest"),t.itemName, 1, CS.W),new Object[]{ST.make(
+//                                new ModData("IronChest", "Iron Chest"),
+//                                "BlockIronChest", 1, 6)
+//                                ,OP.plate.mat(MT.Bronze,1)});
+                                break;
+                }
+            }
+
+        }
     }
 
     @EventHandler
-    public void modsLoaded(FMLPostInitializationEvent evt) {}
+    public void modsLoaded(FMLPostInitializationEvent evt) {
+
+    }
 
     // cpw.mods.fml.common.registry.GameRegistry#registerTileEntityWithAlternatives
     @Mod.EventHandler
     public void missingMapping(FMLMissingMappingsEvent event) {
-        for (FMLMissingMappingsEvent.MissingMapping mapping : event.getAll()) {
-            if (mapping.type == GameRegistry.Type.BLOCK) {
-                switch (mapping.name) {
-                    case "IronChest:copperSilverUpgrade":
-                        mapping.remap(GameRegistry.findBlock("IronChest", "copperSteelUpgrade"));
-                        break;
-                    case "IronChest:silverGoldUpgrade":
-                        mapping.remap(GameRegistry.findBlock("IronChest", "steelGoldUpgrade"));
-                        break;
-                    default:
-                }
-            } else if (mapping.type == GameRegistry.Type.ITEM) {
-                switch (mapping.name) {
-                    case "IronChest:copperSilverUpgrade":
-                        mapping.remap(GameRegistry.findItem("IronChest", "copperSteelUpgrade"));
-                        break;
-                    case "IronChest:silverGoldUpgrade":
-                        mapping.remap(GameRegistry.findItem("IronChest", "steelGoldUpgrade"));
-                        break;
-                    default:
-                }
-            }
-        }
+//        for (FMLMissingMappingsEvent.MissingMapping mapping : event.getAll()) {
+//            if (mapping.type == GameRegistry.Type.BLOCK) {
+//                switch (mapping.name) {
+////                    case "IronChest:copperSilverUpgrade":
+////                        mapping.remap(GameRegistry.findBlock("IronChest", "leadSteelUpgrade"));
+////                        break;
+////                    case "IronChest:silverGoldUpgrade":
+////                        mapping.remap(GameRegistry.findBlock("IronChest", "steelStainlessUpgrade"));
+////                        break;
+////                    case "IronChest:woodIronUpgrade":
+////                        mapping.remap(GameRegistry.findBlock("IronChest", "woodBronzeUpgrade"));
+////                        break;
+////                    case "IronChest:ironGoldUpgrade":
+////                        mapping.remap(GameRegistry.findBlock("IronChest", "bronzeStainlessUpgrade"));
+////                        break;
+////                    default:
+//                }
+//            } else if (mapping.type == GameRegistry.Type.ITEM) {
+//                switch (mapping.name) {
+////                    case "IronChest:copperSilverUpgrade":
+////                        mapping.remap(GameRegistry.findItem("IronChest", "leadSteelUpgrade"));
+////                        break;
+////                    case "IronChest:silverGoldUpgrade":
+////                        mapping.remap(GameRegistry.findItem("IronChest", "steelStainlessUpgrade"));
+////                        break;
+////                    case "IronChest:woodIronUpgrade":
+////                        mapping.remap(GameRegistry.findBlock("IronChest", "woodBronzeUpgrade"));
+////                        break;
+////                    case "IronChest:ironGoldUpgrade":
+////                        mapping.remap(GameRegistry.findBlock("IronChest", "bronzeStainlessUpgrade"));
+////                        break;
+//                    default:
+//                }
+//            }
+//        }
     }
 }

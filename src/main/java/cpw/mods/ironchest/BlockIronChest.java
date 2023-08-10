@@ -107,7 +107,7 @@ public class BlockIronChest extends BlockContainer {
             float f3) {
         TileEntity te = world.getTileEntity(i, j, k);
 
-        if (!(te instanceof TileEntityIronChest)) {
+        if (!(te instanceof TileEntityBronzeChest)) {
             return true;
         }
 
@@ -119,7 +119,7 @@ public class BlockIronChest extends BlockContainer {
             return true;
         }
 
-        player.openGui(IronChest.instance, ((TileEntityIronChest) te).getType().ordinal(), world, i, j, k);
+        player.openGui(IronChest.instance, ((TileEntityBronzeChest) te).getType().ordinal(), world, i, j, k);
         return true;
     }
 
@@ -146,8 +146,8 @@ public class BlockIronChest extends BlockContainer {
             chestFacing = 4;
         }
         TileEntity te = world.getTileEntity(i, j, k);
-        if (te instanceof TileEntityIronChest) {
-            TileEntityIronChest teic = (TileEntityIronChest) te;
+        if (te instanceof TileEntityBronzeChest) {
+            TileEntityBronzeChest teic = (TileEntityBronzeChest) te;
             teic.wasPlaced(entityliving, itemStack);
             teic.setFacing(chestFacing);
             world.markBlockForUpdate(i, j, k);
@@ -161,7 +161,7 @@ public class BlockIronChest extends BlockContainer {
 
     @Override
     public void breakBlock(World world, int i, int j, int k, Block i1, int i2) {
-        TileEntityIronChest tileentitychest = (TileEntityIronChest) world.getTileEntity(i, j, k);
+        TileEntityBronzeChest tileentitychest = (TileEntityBronzeChest) world.getTileEntity(i, j, k);
         if (tileentitychest != null) {
             tileentitychest.removeAdornments();
             dropContent(
@@ -223,8 +223,8 @@ public class BlockIronChest extends BlockContainer {
     public float getExplosionResistance(Entity par1Entity, World world, int x, int y, int z, double explosionX,
             double explosionY, double explosionZ) {
         TileEntity te = world.getTileEntity(x, y, z);
-        if (te instanceof TileEntityIronChest) {
-            TileEntityIronChest teic = (TileEntityIronChest) te;
+        if (te instanceof TileEntityBronzeChest) {
+            TileEntityBronzeChest teic = (TileEntityBronzeChest) te;
             if (teic.getType().isExplosionResistant()) {
                 return 10000f;
             }
@@ -268,8 +268,8 @@ public class BlockIronChest extends BlockContainer {
         }
         if (axis == UP || axis == DOWN) {
             TileEntity tileEntity = worldObj.getTileEntity(x, y, z);
-            if (tileEntity instanceof TileEntityIronChest) {
-                TileEntityIronChest icte = (TileEntityIronChest) tileEntity;
+            if (tileEntity instanceof TileEntityBronzeChest) {
+                TileEntityBronzeChest icte = (TileEntityBronzeChest) tileEntity;
                 icte.rotateAround(axis);
             }
             return true;

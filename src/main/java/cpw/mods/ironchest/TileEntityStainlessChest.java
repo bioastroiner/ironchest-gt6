@@ -7,10 +7,9 @@
  ******************************************************************************/
 package cpw.mods.ironchest;
 
-public class TileEntityCopperChest extends TileEntityIronChest {
+public class TileEntityStainlessChest extends TileEntityBronzeChest {
 
-    public TileEntityCopperChest() {
-        super(IronChestType.COPPER);
+    public TileEntityStainlessChest() {
+        super(IronChestType.STAINLESS);
     }
-
 }

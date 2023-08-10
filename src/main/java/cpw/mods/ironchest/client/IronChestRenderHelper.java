@@ -17,17 +17,17 @@ import com.google.common.collect.Maps;
 
 import cpw.mods.ironchest.IronChest;
 import cpw.mods.ironchest.IronChestType;
-import cpw.mods.ironchest.TileEntityIronChest;
+import cpw.mods.ironchest.TileEntityBronzeChest;
 
 public class IronChestRenderHelper extends TileEntityRendererChestHelper {
 
-    private final Map<Integer, TileEntityIronChest> itemRenders = Maps.newHashMap();
+    private final Map<Integer, TileEntityBronzeChest> itemRenders = Maps.newHashMap();
 
     public IronChestRenderHelper() {
         for (IronChestType typ : IronChestType.values()) {
             itemRenders.put(
                     typ.ordinal(),
-                    (TileEntityIronChest) IronChest.ironChestBlock.createTileEntity(null, typ.ordinal()));
+                    (TileEntityBronzeChest) IronChest.ironChestBlock.createTileEntity(null, typ.ordinal()));
         }
     }
 

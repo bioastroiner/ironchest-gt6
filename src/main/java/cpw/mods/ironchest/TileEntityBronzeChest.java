@@ -23,7 +23,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityIronChest extends TileEntity implements IInventory {
+public class TileEntityBronzeChest extends TileEntity implements IInventory {
 
     private int ticksSinceSync = -1;
     public float prevLidAngle;
@@ -36,11 +36,11 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
     private boolean inventoryTouched;
     private boolean hadStuff;
 
-    public TileEntityIronChest() {
-        this(IronChestType.IRON);
+    public TileEntityBronzeChest() {
+        this(IronChestType.BRONZE);
     }
 
-    protected TileEntityIronChest(IronChestType type) {
+    protected TileEntityBronzeChest(IronChestType type) {
         super();
         this.type = type;
         this.chestContents = new ItemStack[getSizeInventory()];
@@ -332,14 +332,14 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
         this.facing = facing2;
     }
 
-    public TileEntityIronChest applyUpgradeItem(ItemChestChanger itemChestChanger) {
+    public TileEntityBronzeChest applyUpgradeItem(ItemChestChanger itemChestChanger) {
         if (numUsingPlayers > 0) {
             return null;
         }
         if (!itemChestChanger.getType().canUpgrade(this.getType())) {
             return null;
         }
-        TileEntityIronChest newEntity = IronChestType
+        TileEntityBronzeChest newEntity = IronChestType
                 .makeEntity(itemChestChanger.getTargetChestOrdinal(getType().ordinal()));
         int newSize = newEntity.chestContents.length;
         System.arraycopy(chestContents, 0, newEntity.chestContents, 0, Math.min(newSize, chestContents.length));
@@ -355,11 +355,11 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
         return topStacks;
     }
 
-    public TileEntityIronChest updateFromMetadata(int l) {
+    public TileEntityBronzeChest updateFromMetadata(int l) {
         if (worldObj != null && worldObj.isRemote) {
             if (l != type.ordinal()) {
                 worldObj.setTileEntity(xCoord, yCoord, zCoord, IronChestType.makeEntity(l));
-                return (TileEntityIronChest) worldObj.getTileEntity(xCoord, yCoord, zCoord);
+                return (TileEntityBronzeChest) worldObj.getTileEntity(xCoord, yCoord, zCoord);
             }
         }
         return this;
@@ -371,7 +371,7 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
     }
 
     public void handlePacketData(int typeData, ItemStack[] intData) {
-        TileEntityIronChest chest = this;
+        TileEntityBronzeChest chest = this;
         if (this.type.ordinal() != typeData) {
             chest = updateFromMetadata(typeData);
         }

@@ -79,8 +79,8 @@ public enum PacketHandler {
         protected void channelRead0(ChannelHandlerContext ctx, IronChestMessage msg) throws Exception {
             World world = IronChest.proxy.getClientWorld();
             TileEntity te = world.getTileEntity(msg.x, msg.y, msg.z);
-            if (te instanceof TileEntityIronChest) {
-                TileEntityIronChest icte = (TileEntityIronChest) te;
+            if (te instanceof TileEntityBronzeChest) {
+                TileEntityBronzeChest icte = (TileEntityBronzeChest) te;
                 icte.setFacing(msg.facing);
                 icte.handlePacketData(msg.type, msg.itemStacks);
             }
@@ -165,17 +165,17 @@ public enum PacketHandler {
      * {@link FMLProxyPacket} by using the utility method {@link FMLEmbeddedChannel#generatePacketFrom(Object)} on the
      * channel to do exactly that.
      *
-     * @param tileEntityIronChest
+     * @param tileEntityBronzeChest
      * @return
      */
-    public static Packet getPacket(TileEntityIronChest tileEntityIronChest) {
+    public static Packet getPacket(TileEntityBronzeChest tileEntityBronzeChest) {
         IronChestMessage msg = new IronChestMessage();
-        msg.x = tileEntityIronChest.xCoord;
-        msg.y = tileEntityIronChest.yCoord;
-        msg.z = tileEntityIronChest.zCoord;
-        msg.type = tileEntityIronChest.getType().ordinal();
-        msg.facing = tileEntityIronChest.getFacing();
-        msg.itemStacks = tileEntityIronChest.buildItemStackDataList();
+        msg.x = tileEntityBronzeChest.xCoord;
+        msg.y = tileEntityBronzeChest.yCoord;
+        msg.z = tileEntityBronzeChest.zCoord;
+        msg.type = tileEntityBronzeChest.getType().ordinal();
+        msg.facing = tileEntityBronzeChest.getFacing();
+        msg.itemStacks = tileEntityBronzeChest.buildItemStackDataList();
         return INSTANCE.channels.get(Side.SERVER).generatePacketFrom(msg);
     }
 }

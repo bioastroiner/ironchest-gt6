@@ -1,21 +1,21 @@
-tile.ironchest:IRON.name=Iron Chest
-tile.ironchest:GOLD.name=Gold Chest
-tile.ironchest:DIAMOND.name=Diamond Chest
-tile.ironchest:COPPER.name=Copper Chest
+tile.ironchest:BRONZE.name=Bronze Chest
+tile.ironchest:STAINLESS.name=Stainless Steel Chest
+tile.ironchest:TUNGSTEN.name=Tungsten Steel Chest
+tile.ironchest:LEAD.name=Lead Chest
 tile.ironchest:STEEL.name=Steel Chest
 tile.ironchest:CRYSTAL.name=Crystal Chest
 tile.ironchest:OBSIDIAN.name=Obsidian Chest
 tile.ironchest:DIRTCHEST9000.name=DirtChest 9000!
 
-item.ironchest:IRONGOLD.name=Iron to Gold Chest Upgrade
-item.ironchest:GOLDDIAMOND.name=Gold to Diamond Chest Upgrade
-item.ironchest:COPPERSTEEL.name=Copper to Steel Chest Upgrade
-item.ironchest:STEELGOLD.name=Steel to Gold Chest Upgrade
-item.ironchest:COPPERIRON.name=Copper to Iron Chest Upgrade
-item.ironchest:DIAMONDCRYSTAL.name=Diamond to Crystal Chest Upgrade
-item.ironchest:WOODIRON.name=Wood to Iron Chest Upgrade
-item.ironchest:WOODCOPPER.name=Wood to Copper Chest Upgrade
-item.ironchest:DIAMONDOBSIDIAN.name=Diamond to Obsidian Chest Upgrade
+item.ironchest:BRONZESTAINLESS.name=Bronze to Stainless Steel Chest Upgrade
+item.ironchest:STAINLESSTUNGSTEN.name=Stainless Steel to Tungsten Steel Chest Upgrade
+item.ironchest:LEADSTEEL.name=Lead to Steel Chest Upgrade
+item.ironchest:STEELSTAINLESS.name=Steel to Stainless Steel Chest Upgrade
+item.ironchest:LEADBRONZE.name=Lead to Bronze Chest Upgrade
+item.ironchest:TUNGSTENCRYSTAL.name=Tungsten Steel to Crystal Chest Upgrade
+item.ironchest:WOODBRONZE.name=Wood to Bronze Chest Upgrade
+item.ironchest:WOODLEAD.name=Wood to Lead Chest Upgrade
+item.ironchest:TUNGSTENOBSIDIAN.name=Tungsten Steel to Obsidian Chest Upgrade
 
 book.ironchest:dirtchest9000.title=How to use your DirtChest 9000!
 book.ironchest:dirtchest9000.page1=Welcome to your new DirtChest 9000! We hope you will enjoy many happy years of storing your stack of dirt in our storage utility.

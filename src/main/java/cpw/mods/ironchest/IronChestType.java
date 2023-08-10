@@ -26,14 +26,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public enum IronChestType {
 
-    IRON(54, 9, true, "Iron Chest", "ironchest.png", 0, Arrays.asList("ingotIron", "ingotRefinedIron"),
-            TileEntityIronChest.class, "mmmmPmmmm", "mGmG3GmGm"),
-    GOLD(81, 9, true, "Gold Chest", "goldchest.png", 1, Arrays.asList("ingotGold"), TileEntityGoldChest.class,
+    BRONZE(54, 9, true, "Bronze Chest", "ironchest.png", 0, Arrays.asList("ingotBronze"),
+            TileEntityBronzeChest.class, "mmmmPmmmm", "mGmG3GmGm"),
+    STAINLESS(81, 9, true, "Stainless Steel Chest", "goldchest.png", 1, Arrays.asList("ingotSteelStainless"), TileEntityStainlessChest.class,
             "mmmmPmmmm", "mGmG4GmGm"),
-    DIAMOND(108, 12, true, "Diamond Chest", "diamondchest.png", 2, Arrays.asList("gemDiamond"),
-            TileEntityDiamondChest.class, "GGGmPmGGG", "GGGG4Gmmm"),
-    COPPER(45, 9, false, "Copper Chest", "copperchest.png", 3, Arrays.asList("ingotCopper"),
-            TileEntityCopperChest.class, "mmmmCmmmm"),
+    TUNGSTEN(108, 12, true, "Tungsten Steel Chest", "diamondchest.png", 2, Arrays.asList("ingotTungstenSteel"),
+            TileEntityTungstenChest.class, "GGGmPmGGG", "GGGG4Gmmm"),
+    LEAD(45, 9, false, "Lead Chest", "copperchest.png", 3, Arrays.asList("ingotLead"),
+            TileEntityLeadChest.class, "mmmmCmmmm"),
     STEEL(72, 9, false, "Steel Chest", "silverchest.png", 4, Arrays.asList("ingotSteel"), TileEntitySteelChest.class,
             "mmmm3mmmm", "mGmG0GmGm"),
     CRYSTAL(108, 12, true, "Crystal Chest", "crystalchest.png", 5, Arrays.asList("blockGlass"),
@@ -50,19 +50,19 @@ public enum IronChestType {
     private final boolean tieredChest;
     private final String modelTexture;
     private final int textureRow;
-    public final Class<? extends TileEntityIronChest> clazz;
+    public final Class<? extends TileEntityBronzeChest> clazz;
     private final String[] recipes;
     private final ArrayList<String> matList;
     private final Item itemFilter;
 
     IronChestType(int size, int rowLength, boolean tieredChest, String friendlyName, String modelTexture,
-            int textureRow, List<String> mats, Class<? extends TileEntityIronChest> clazz, String... recipes) {
+                  int textureRow, List<String> mats, Class<? extends TileEntityBronzeChest> clazz, String... recipes) {
         this(size, rowLength, tieredChest, friendlyName, modelTexture, textureRow, mats, clazz, (Item) null, recipes);
     }
 
     IronChestType(int size, int rowLength, boolean tieredChest, String friendlyName, String modelTexture,
-            int textureRow, List<String> mats, Class<? extends TileEntityIronChest> clazz, Item itemFilter,
-            String... recipes) {
+                  int textureRow, List<String> mats, Class<? extends TileEntityBronzeChest> clazz, Item itemFilter,
+                  String... recipes) {
         this.size = size;
         this.rowLength = rowLength;
         this.tieredChest = tieredChest;
@@ -84,7 +84,7 @@ public enum IronChestType {
         return textureRow;
     }
 
-    public static TileEntityIronChest makeEntity(int metadata) {
+    public static TileEntityBronzeChest makeEntity(int metadata) {
         // Compatibility
         int chesttype = validateMeta(metadata);
         if (chesttype == metadata) {

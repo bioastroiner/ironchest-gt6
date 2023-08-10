@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.StatCollector;
 
-public class TileEntityDirtChest extends TileEntityIronChest {
+public class TileEntityDirtChest extends TileEntityBronzeChest {
 
     private static ItemStack dirtChest9000GuideBook = new ItemStack(Items.written_book);
     static {

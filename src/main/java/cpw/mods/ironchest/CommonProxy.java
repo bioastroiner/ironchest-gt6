@@ -31,8 +31,8 @@ public class CommonProxy implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int X, int Y, int Z) {
         TileEntity te = world.getTileEntity(X, Y, Z);
-        if (te instanceof TileEntityIronChest) {
-            TileEntityIronChest icte = (TileEntityIronChest) te;
+        if (te instanceof TileEntityBronzeChest) {
+            TileEntityBronzeChest icte = (TileEntityBronzeChest) te;
             return new ContainerIronChest(player.inventory, icte, icte.getType(), 0, 0);
         } else {
             return null;

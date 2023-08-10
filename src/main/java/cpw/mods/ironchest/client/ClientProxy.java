@@ -16,7 +16,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.ironchest.CommonProxy;
 import cpw.mods.ironchest.IronChestType;
-import cpw.mods.ironchest.TileEntityIronChest;
+import cpw.mods.ironchest.TileEntityBronzeChest;
 
 public class ClientProxy extends CommonProxy {
 
@@ -38,8 +38,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity te = world.getTileEntity(x, y, z);
-        if (te instanceof TileEntityIronChest) {
-            return GUIChest.GUI.buildGUI(IronChestType.values()[ID], player.inventory, (TileEntityIronChest) te);
+        if (te instanceof TileEntityBronzeChest) {
+            return GUIChest.GUI.buildGUI(IronChestType.values()[ID], player.inventory, (TileEntityBronzeChest) te);
         } else {
             return null;
         }

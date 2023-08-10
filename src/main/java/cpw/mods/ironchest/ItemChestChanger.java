@@ -44,9 +44,9 @@ public class ItemChestChanger extends Item {
             float hitX, float hitY, float hitZ) {
         if (world.isRemote) return false;
         TileEntity te = world.getTileEntity(X, Y, Z);
-        TileEntityIronChest newchest;
-        if (te instanceof TileEntityIronChest) {
-            TileEntityIronChest ironchest = (TileEntityIronChest) te;
+        TileEntityBronzeChest newchest;
+        if (te instanceof TileEntityBronzeChest) {
+            TileEntityBronzeChest ironchest = (TileEntityBronzeChest) te;
             newchest = ironchest.applyUpgradeItem(this);
             if (newchest == null) {
                 return false;

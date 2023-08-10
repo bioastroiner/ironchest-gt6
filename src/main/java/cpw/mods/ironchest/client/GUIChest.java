@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.ironchest.ContainerIronChest;
 import cpw.mods.ironchest.IronChestType;
-import cpw.mods.ironchest.TileEntityIronChest;
+import cpw.mods.ironchest.TileEntityBronzeChest;
 
 public class GUIChest extends GuiContainer {
 
@@ -38,10 +38,10 @@ public class GUIChest extends GuiContainer {
 
     public enum GUI {
 
-        IRON(184, 202, ResourceList.IRON, IronChestType.IRON),
-        GOLD(184, 256, ResourceList.GOLD, IronChestType.GOLD),
-        DIAMOND(238, 256, ResourceList.DIAMOND, IronChestType.DIAMOND),
-        COPPER(184, 184, ResourceList.COPPER, IronChestType.COPPER),
+        IRON(184, 202, ResourceList.IRON, IronChestType.BRONZE),
+        GOLD(184, 256, ResourceList.GOLD, IronChestType.STAINLESS),
+        DIAMOND(238, 256, ResourceList.DIAMOND, IronChestType.TUNGSTEN),
+        COPPER(184, 184, ResourceList.COPPER, IronChestType.LEAD),
         STEEL(184, 238, ResourceList.STEEL, IronChestType.STEEL),
         CRYSTAL(238, 256, ResourceList.DIAMOND, IronChestType.CRYSTAL),
         OBSIDIAN(238, 256, ResourceList.DIAMOND, IronChestType.OBSIDIAN),
@@ -65,7 +65,7 @@ public class GUIChest extends GuiContainer {
         }
 
         public static GUIChest buildGUI(IronChestType type, IInventory playerInventory,
-                TileEntityIronChest chestInventory) {
+                TileEntityBronzeChest chestInventory) {
             return new GUIChest(values()[chestInventory.getType().ordinal()], playerInventory, chestInventory);
         }
     }
